@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>finding the dominance of colour in an image using k-means clustering </title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,600;1,700&display=swap" 
+rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ </head>
+    <body>
+        <section class="header">
+            <nav>
+                <a href="index.html">
+                    <img src="images/logo.png">
+                </a>
+                <div class="nav-links" id="navLinks"> 
+                    <i class="fa fa-times"onclick="hideMenu()"> </i>
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="code.html">CODE</a></li>
+                        <li><a href="inputoutput.html">I/O</a></li>
+                        <li><a href="running.html">EXECUTE</a></li>
+                        <li><a href="ABOUT US.html">CREATORS</a></li>
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+         <div class="text-box">
+            <h1>Input and Output</h1>
+            <p>
+                Testing an image in our code and then presenting the dominant color as output.
+            </p>
+            <section class="execution">
+                <h3>CLICK TO EXECUTE</h3>
+                <a href="running.html" class="hero-btn">EXECUTE</a>
+    
+    
+            </section>
+         </div>  
+        </section>
+           <!-----facilities----->
+        <section class="facilities">
+            <h1> INPUT
+            </h1>
+            <div class="facilities-col">
+                <img src="images/input.jpg">
+                <h3>Input</h3>
+                <p>
+                    
+                </p>
+            </div>
+            <h1> OUTPUT'S </h1>
+                <div class="facilities-col">
+                    <img src="images/Screenshot (3).png">
+                    <h3>the color cluster blocks </h3>
+                    <p>
+                       
+                    </p>
+                </div>
+                <div>  <br> </div>
+                <div class="facilities-col">
+                    <img src="images/propotion of colour.png">
+                    <h3>bargraph</h3>
+                    <p>
+                        
+                    </p>
+                </div>
+                <div class="facilities-col">
+                    <img src="images/last.png">
+                    <h3>image with dominant color block</h3>
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+
+        </section>
+        <!----footer-->
+        <section class="footer">
+            <h4>ABOUT US</h4>
+            <p>
+                WE ARE THE STUDENTS OF CMR ENGINEERING COLLEGE, THIS IS OUR PROJECT WHICH WE ENROLLED FOR ROPE.<br>
+                WE DESIGNED THIS PROTIFOLO WEBSITE WHICH HELPS ANY ONE TO VIEW IT FROM ANY WHERE THEY WANT.
+                </p>
+            <div class="icons">
+                <i class="fa fa-facebook"></i>
+                <i class="fa fa-twitter"></i>
+                <i class="fa fa-instagram"></i>
+                <i class="fa fa-whatsapp"></i>
+                <i class="fa fa-snapchat"></i>
+
+            </div>
+            <p>MADE WITH LAXMAIAH SIR STUDENTS <i class="fa fa-heart-o"></i> by html and css</p>
+        </section>
+
+        <!----------javascript for toggle menu------->
+        <script>
+            var navLinks = document.getElementById("navLinks");
+            function showMenu(){
+                navLinks.style.right = "0";
+
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+                
+            }
+        </script>
+
+
+
+
+
+
+
+
+    </body>
+</html>

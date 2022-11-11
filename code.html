@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>finding the dominance of colour in an image using k-means clustering </title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,600;1,700&display=swap" 
+rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="index.html">
+                    <img src="images/logo.png">
+                </a>
+                <div class="nav-links" id="navLinks"> 
+                    <i class="fa fa-times"onclick="hideMenu()"> </i>
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="code.html">CODE</a></li>
+                        <li><a href="inputoutput.html">I/O</a></li>
+                        <li><a href="running.html">EXECUTE</a></li>
+                        <li><a href="ABOUT US.html">CREATORS</a></li>
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+            <h1>CODE</h1>
+            <p>code for the dominant colours in image</p> 
+        </section>
+        <section class="codee">
+            <div class ="coderow">
+                <div class="codee-col">
+            <h5>CODE</h5>
+            <p> import cv2</p>
+            <p> import numpy as np</p>
+             <p>import matplotlib.pyplot as plt
+                <p>from sklearn.cluster import KMeans
+                    <p>import imutils
+                
+                        <p>clusters = 5 # try changing it
+                
+                            <p>img = cv2.imread('5.png')
+                                <p>org_img = img.copy()
+                                    <p>print('Org image shape --> ',img.shape)
+                
+                                        <p>mg = imutils.resize(img,height=200)
+                                            <p>print('After resizing shape --> ',img.shape)
+                
+                                                <p>flat_img = np.reshape(img,(-1,3))
+                                                    <p>print('After Flattening shape --> ',flat_img.shape)
+                
+                                                        <p> kmeans = KMeans(n_clusters=clusters,random_state=0)
+                                                            <p> kmeans.fit(flat_img)
+                
+                                                                <p>dominant_colors = np.array(kmeans.cluster_centers_,dtype='uint')
+                
+                                                                    <p>percentages = (np.unique(kmeans.labels_,return_counts=True)[1])/flat_img.shape[0]
+                                                                        <p>p_and_c = zip(percentages,dominant_colors)
+                                                                            <p>p_and_c = sorted(p_and_c,reverse=True)
+                
+                                                                                <p>block = np.ones((50,50,3),dtype='uint')
+                                                                                    <p>plt.figure(figsize=(12,8))
+                                                                                        <p>or i in range(clusters):
+                                                                                            <p>plt.subplot(1,clusters,i+1)
+                                                                                                <p> block[:] = p_and_c[i][1][::-1] # we have done this to convert bgr(opencv) to rgb(matplotlib) 
+                                                                                                    <p> plt.imshow(block)
+                                                                                                        <p>  plt.xticks([])
+                                                                                                            <p>  plt.yticks([])
+                                                                                                                <p> plt.xlabel(str(round(p_and_c[i][0]*100,2))+'%')
+                
+                                                                                                                    <p>bar = np.ones((50,500,3),dtype='uint')
+                                                                                                                        <p>  plt.figure(figsize=(12,8))
+                                                                                                                            <p> plt.title('Proportions of colors in the image')
+                                                                                                                                <p>start = 0
+                                                                                                                                    <p> i = 1
+                                                                                                                                        <p>for p,c in p_and_c:
+                                                                                                                                            <p>end = start+int(p*bar.shape[1])
+                                                                                                                                                <p>if i==clusters:
+                                                                                                                                                    <p>bar[:,start:] = c[::-1]
+                                                                                                                                                        <p>else:
+                                                                                                                                                            <p>bar[:,start:end] = c[::-1]
+                                                                                                                                                                <p>start = end
+                                                                                                                                                                    <p>i+=1
+                
+                                                                                                                                                                        <p>plt.imshow(bar)
+                                                                                                                                                                            <p> plt.xticks([])
+                                                                                                                                                                                <p>plt.yticks([])
+                
+                                                                                                                                                                                    <p>rows = 1000
+                                                                                                                                                                                        <p> cols = int((org_img.shape[0]/org_img.shape[1])*rows)
+                                                                                                                                                                                            <p>  img = cv2.resize(org_img,dsize=(rows,cols),interpolation=cv2.INTER_LINEAR)
+                
+                                                                                                                                                                                                <p>copy = img.copy()
+                                                                                                                                                                                                    <p>cv2.rectangle(copy,(rows//2-250,cols//2-90),(rows//2+250,cols//2+110),(255,255,255),-1)
+                
+                                                                                                                                                                                                        <p>final = cv2.addWeighted(img,0.1,copy,0.9,0)
+                                                                                                                                                                                                            <p> cv2.putText(final,'Most Dominant Colors in the Image',(rows//2-230,cols//2-40),cv2.FONT_HERSHEY_DUPLEX,0.8,(0,0,0),1,cv2.LINE_AA)
+                
+                
+                                                                                                                                                                                                                <p> start = rows//2-220
+                                                                                                                                                                                                                    <p> for i in range(5):
+                                                                                                                                                                                                                        <p>  end = start+70
+                                                                                                                                                                                                                            <p>inal[cols//2:cols//2+70,start:end] = p_and_c[i][1]
+                                                                                                                                                                                                                                <p> cv2.putText(final,str(i+1),(start+25,cols//2+45),cv2.FONT_HERSHEY_DUPLEX,1,(255,255,255),1,cv2.LINE_AA)
+                                                                                                                                                                                                                                    <p>start = end+20
+                
+                                                                                                                                                                                                                                        <p> plt.show()
+                
+               <p> cv2.imshow('img',final)
+                <p>  cv2.destroyAllWindows()
+                    <p>  cv2.imwrite('output.png',final)</p>
+                </div>
+                </div>
+
+        </section>
+
+
+       
+
+        <!----footer-->
+        <section class="footer">
+            <h4>ABOUT US</h4>
+            <p>
+                WE ARE THE STUDENTS OF CMR ENGINEERING COLLEGE, THIS IS OUR PROJECT WHICH WE ENROLLED FOR ROPE.<br>
+                WE DESIGNED THIS PROTIFOLO WEBSITE WHICH HELPS ANY ONE TO VIEW IT FROM ANY WHERE THEY WANT.
+                </p>
+            <div class="icons">
+                <i class="fa fa-facebook"></i>
+                <i class="fa fa-twitter"></i>
+                <i class="fa fa-instagram"></i>
+                <i class="fa fa-whatsapp"></i>
+                <i class="fa fa-snapchat"></i>
+
+            </div>
+            <p>MADE WITH LAXMAIAH SIR STUDENTS <i class="fa fa-heart-o"></i> by html and css</p>
+        </section>
+
+        <!----------javascript for toggle menu------->
+        <script>
+            var navLinks = document.getElementById("navLinks");
+            function showMenu(){
+                navLinks.style.right = "0";
+
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+                
+            }
+        </script>
+
+
+
+
+
+
+
+
+    </body>
+</html>

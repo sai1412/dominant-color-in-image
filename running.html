@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>finding the dominance of colour in an image using k-means clustering </title>
+        <link rel="stylesheet" href="style.css">
+        <link rel='stylesheet' href='index.css'>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,600;1,700&display=swap" 
+rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ </head>
+    <body>
+        <section class="header">
+            <nav>
+                <a href="index.html">
+                    <img src="images/logo.png">
+                </a>
+                <div class="nav-links" id="navLinks"> 
+                    <i class="fa fa-times"onclick="hideMenu()"> </i>
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="code.html">CODE</a></li>
+                        <li><a href="inputoutput.html">I/O</a></li>
+                        <li><a href="running.html">EXECUTE</a></li>
+                        <li><a href="ABOUT US.html">CREATORS</a></li>
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+            <div class="text-box">
+                <div class='container'>
+    
+                    <h2>Get dominant color of image</h2>
+                    <p>Upload image below and check the dominant color of image</p>
+                  
+                    <label id='drop-area'>
+                      Drop images here or select from your device
+                      <input type='file' multiple accept='image/*'>
+                    </label>
+                    <div id='gallery'></div>
+                  
+                  </div>
+            </div>
+              
+              <script type='module' src='index.js'></script>
+
+
+
+            <div>
+
+
+
+                
+            </div>
+        <!----footer-->
+
+        <!----------javascript for toggle menu------->
+        <script>
+            var navLinks = document.getElementById("navLinks");
+            function showMenu(){
+                navLinks.style.right = "0";
+
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+                
+            }
+        </script>
+
+
+
+
+
+
+
+
+    </body>
+</html>
